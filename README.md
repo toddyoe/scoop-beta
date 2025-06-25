@@ -1,16 +1,16 @@
-# 🍨 scoop-canary 🍨
+# 🍨 scoop-beta 🍨
 
-[![Excavator](https://github.com/toddyoe/scoop-canary/actions/workflows/ci.yml/badge.svg)](https://github.com/toddyoe/scoop-canary/actions/workflows/ci.yml)
-[![license](https://img.shields.io/github/license/toddyoe/scoop-canary)](https://github.com/toddyoe/scoop-canary/blob/master/LICENSE)
-[![code size](https://img.shields.io/github/languages/code-size/toddyoe/scoop-canary.svg)](https://img.shields.io/github/languages/code-size/toddyoe/scoop-canary.svg)
-[![repo size](https://img.shields.io/github/repo-size/toddyoe/scoop-canary.svg)](https://img.shields.io/github/repo-size/toddyoe/scoop-canary.svg)
+[![Excavator](https://github.com/toddyoe/scoop-beta/actions/workflows/ci.yml/badge.svg)](https://github.com/toddyoe/scoop-beta/actions/workflows/ci.yml)
+[![license](https://img.shields.io/github/license/toddyoe/scoop-beta)](https://github.com/toddyoe/scoop-beta/blob/master/LICENSE)
+[![code size](https://img.shields.io/github/languages/code-size/toddyoe/scoop-beta.svg)](https://img.shields.io/github/languages/code-size/toddyoe/scoop-beta.svg)
+[![repo size](https://img.shields.io/github/repo-size/toddyoe/scoop-beta.svg)](https://img.shields.io/github/repo-size/toddyoe/scoop-beta.svg)
 
-专注于Nightly、Canary 版的 Windows 最佳包管理器 [Scoop](https://github.com/ScoopInstaller/Scoop) 扩展库
+专注于 Beta 版的 Windows 最佳包管理器 [Scoop](https://github.com/ScoopInstaller/Scoop) 扩展库
 
 对于熟悉 Scoop 的用户：
 
 ```powershell
-scoop bucket add scoop-canary https://github.com/toddyoe/scoop-canary
+scoop bucket add scoop-beta https://github.com/toddyoe/scoop-beta
 ```
 
 # 🏃 开始
@@ -61,7 +61,7 @@ scoop install git
 ### ✈️ 步骤 3：添加本仓库并更新，么么哒~ 💋
 
 ```powershell
-scoop bucket add scoop-canary https://github.com/toddyoe/scoop-canary
+scoop bucket add scoop-beta https://github.com/toddyoe/scoop-beta
 scoop update
 ```
 
