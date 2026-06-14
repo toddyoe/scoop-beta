@@ -1,10 +1,10 @@
 {
-    "version": "0.7.0",
+    "version": "0.7.1",
     "description": "Windows 全盘清理工具，支持常规清理、大文件扫描、重复文件查找、强力卸载及系统残留清理等。",
     "homepage": "https://github.com/Kiowx/c_cleaner_plus",
     "license": "Apache-2.0",
-    "url": "https://github.com/Kiowx/c_cleaner_plus/releases/download/v0.7.0/c_cleaner_plus.exe#/ccleanerplus.exe",
-    "hash": "fc731f758422a1d9945e83f3d83fc979b7e9dcfbf3680be0dc98f8d0af3faadd",
+    "url": "https://github.com/Kiowx/c_cleaner_plus/releases/download/v0.7.1/c_cleaner_plus.exe#/ccleanerplus.exe",
+    "hash": "f16bf7b60d41a089ea1c77358e059fd4aba4baaacf20c73f88db605ad8ec9143",
     "bin": "ccleanerplus.exe",
     "shortcuts": [
         [
