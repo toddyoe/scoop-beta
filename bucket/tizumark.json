@@ -1,0 +1,129 @@
+{
+  "version": "1.0.6",
+  "description": "A lightweight, fast and open-source Markdown editor built with Tauri and Rust.",
+  "homepage": "https://github.com/tizuio/TizuMark",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/tizuio/TizuMark/releases/download/v1.0.6/TizuMark_1.0.6_x64.exe#/TizuMark.exe",
+      "hash": "4f3dce12159f91d1daf7c3657501fd1cb4242640644d44b2502f97e71c9a5144"
+    }
+  },
+  "bin": "TizuMark.exe",
+  "shortcuts": [
+    [
+      "TizuMark.exe",
+      "TizuMark"
+    ]
+  ],
+  "notes": [
+    "Registers TizuMark for .md and .markdown files for the current user.",
+    "If Windows already has an explicit default app for these extensions, select TizuMark once in Open with or Settings > Apps > Default apps.",
+    "Roaming app data and the WebView2 local profile are stored under $persist_dir\\data and are kept unless Scoop is uninstalled with -p."
+  ],
+  "persist": "data",
+  "post_install": [
+    "$roamingSource = Join-Path $env:APPDATA 'com.tizu.markdown'",
+    "$localSource = Join-Path $env:LOCALAPPDATA 'com.tizu.markdown'",
+    "$roamingTarget = Join-Path $persist_dir 'data\\roaming'",
+    "$localTarget = Join-Path $persist_dir 'data\\local'",
+    "function Move-TizuMarkDataToPersist([string]$Source, [string]$Target) {",
+    "    New-Item -ItemType Directory -Path $Target -Force | Out-Null",
+    "    if (Test-Path -LiteralPath $Source) {",
+    "        $sourceItem = Get-Item -LiteralPath $Source -Force",
+    "        if (($sourceItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) {",
+    "            Remove-Item -LiteralPath $Source -Force",
+    "        } else {",
+    "            Get-ChildItem -LiteralPath $Source -Force | Copy-Item -Destination $Target -Recurse -Force",
+    "            Remove-Item -LiteralPath $Source -Recurse -Force",
+    "        }",
+    "    }",
+    "    New-Item -ItemType Junction -Path $Source -Target $Target -Force | Out-Null",
+    "}",
+    "Move-TizuMarkDataToPersist $roamingSource $roamingTarget",
+    "Move-TizuMarkDataToPersist $localSource $localTarget",
+    "$classesRoot = 'HKCU:\\Software\\Classes'",
+    "$progId = 'TizuMark.Markdown'",
+    "$exePath = Join-Path $dir 'TizuMark.exe'",
+    "$openCommand = '\"' + $exePath + '\" \"%1\"'",
+    "$iconCommand = '\"' + $exePath + '\",0'",
+    "function Set-RegistryDefault([string]$Path, [string]$Value) {",
+    "    New-Item -Path $Path -Force | Out-Null",
+    "    Set-Item -Path $Path -Value $Value",
+    "}",
+    "Set-RegistryDefault (Join-Path $classesRoot $progId) 'Markdown Document'",
+    "Set-RegistryDefault (Join-Path $classesRoot \"$progId\\DefaultIcon\") $iconCommand",
+    "Set-RegistryDefault (Join-Path $classesRoot \"$progId\\shell\\open\\command\") $openCommand",
+    "$applicationPath = Join-Path $classesRoot 'Applications\\TizuMark.exe'",
+    "Set-RegistryDefault (Join-Path $applicationPath 'shell\\open\\command') $openCommand",
+    "New-Item -Path (Join-Path $applicationPath 'SupportedTypes') -Force | Out-Null",
+    "New-ItemProperty -Path (Join-Path $applicationPath 'SupportedTypes') -Name '.md' -Value '' -PropertyType String -Force | Out-Null",
+    "New-ItemProperty -Path (Join-Path $applicationPath 'SupportedTypes') -Name '.markdown' -Value '' -PropertyType String -Force | Out-Null",
+    "foreach ($extension in @('.md', '.markdown')) {",
+    "    $extensionPath = Join-Path $classesRoot $extension",
+    "    Set-RegistryDefault $extensionPath $progId",
+    "    New-ItemProperty -Path $extensionPath -Name 'Content Type' -Value 'text/markdown' -PropertyType String -Force | Out-Null",
+    "    New-ItemProperty -Path $extensionPath -Name 'PerceivedType' -Value 'text' -PropertyType String -Force | Out-Null",
+    "    $openWithPath = Join-Path $extensionPath 'OpenWithProgids'",
+    "    New-Item -Path $openWithPath -Force | Out-Null",
+    "    New-ItemProperty -Path $openWithPath -Name $progId -Value '' -PropertyType String -Force | Out-Null",
+    "}",
+    "$appRegistration = 'HKCU:\\Software\\TizuMark'",
+    "New-Item -Path $appRegistration -Force | Out-Null",
+    "New-ItemProperty -Path $appRegistration -Name 'ApplicationName' -Value 'TizuMark' -PropertyType String -Force | Out-Null",
+    "New-ItemProperty -Path $appRegistration -Name 'ApplicationDescription' -Value 'A lightweight Markdown editor' -PropertyType String -Force | Out-Null",
+    "New-ItemProperty -Path $appRegistration -Name 'ApplicationIcon' -Value $iconCommand -PropertyType String -Force | Out-Null",
+    "$capabilitiesPath = Join-Path $appRegistration 'Capabilities'",
+    "New-Item -Path $capabilitiesPath -Force | Out-Null",
+    "New-ItemProperty -Path $capabilitiesPath -Name 'ApplicationName' -Value 'TizuMark' -PropertyType String -Force | Out-Null",
+    "New-ItemProperty -Path $capabilitiesPath -Name 'ApplicationDescription' -Value 'A lightweight Markdown editor' -PropertyType String -Force | Out-Null",
+    "$fileAssociationsPath = Join-Path $capabilitiesPath 'FileAssociations'",
+    "New-Item -Path $fileAssociationsPath -Force | Out-Null",
+    "New-ItemProperty -Path $fileAssociationsPath -Name '.md' -Value $progId -PropertyType String -Force | Out-Null",
+    "New-ItemProperty -Path $fileAssociationsPath -Name '.markdown' -Value $progId -PropertyType String -Force | Out-Null",
+    "$registeredApplications = 'HKCU:\\Software\\RegisteredApplications'",
+    "New-Item -Path $registeredApplications -Force | Out-Null",
+    "New-ItemProperty -Path $registeredApplications -Name 'TizuMark' -Value 'Software\\TizuMark\\Capabilities' -PropertyType String -Force | Out-Null"
+  ],
+  "post_uninstall": [
+    "$roamingSource = Join-Path $env:APPDATA 'com.tizu.markdown'",
+    "$localSource = Join-Path $env:LOCALAPPDATA 'com.tizu.markdown'",
+    "foreach ($source in @($roamingSource, $localSource)) {",
+    "    if (Test-Path -LiteralPath $source) {",
+    "        $sourceItem = Get-Item -LiteralPath $source -Force",
+    "        if (($sourceItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) {",
+    "            Remove-Item -LiteralPath $source -Force",
+    "        }",
+    "    }",
+    "}",
+    "$classesRoot = 'HKCU:\\Software\\Classes'",
+    "$progId = 'TizuMark.Markdown'",
+    "foreach ($extension in @('.md', '.markdown')) {",
+    "    $extensionPath = Join-Path $classesRoot $extension",
+    "    if (Test-Path -LiteralPath $extensionPath) {",
+    "        $extensionKey = Get-Item -LiteralPath $extensionPath",
+    "        if ($extensionKey.GetValue('') -eq $progId) {",
+    "            $extensionKey.DeleteValue('', $false)",
+    "        }",
+    "        $openWithPath = Join-Path $extensionPath 'OpenWithProgids'",
+    "        if (Test-Path -LiteralPath $openWithPath) {",
+    "            Remove-ItemProperty -LiteralPath $openWithPath -Name $progId -Force -ErrorAction SilentlyContinue",
+    "        }",
+    "    }",
+    "}",
+    "Remove-Item -LiteralPath (Join-Path $classesRoot $progId) -Recurse -Force -ErrorAction SilentlyContinue",
+    "Remove-Item -LiteralPath (Join-Path $classesRoot 'Applications\\TizuMark.exe') -Recurse -Force -ErrorAction SilentlyContinue",
+    "Remove-ItemProperty -LiteralPath 'HKCU:\\Software\\RegisteredApplications' -Name 'TizuMark' -Force -ErrorAction SilentlyContinue",
+    "Remove-Item -LiteralPath 'HKCU:\\Software\\TizuMark' -Recurse -Force -ErrorAction SilentlyContinue"
+  ],
+  "checkver": {
+    "github": "https://github.com/tizuio/TizuMark"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/tizuio/TizuMark/releases/download/v$version/TizuMark_$version_x64.exe#/TizuMark.exe"
+      }
+    }
+  }
+}
