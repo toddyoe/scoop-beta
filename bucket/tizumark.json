@@ -1,12 +1,12 @@
 {
-    "version": "1.2.0",
+    "version": "1.1.0",
     "description": "A lightweight, fast and open-source Markdown editor built with Tauri and Rust.",
     "homepage": "https://github.com/tizuio/TizuMark",
     "license": "GPL-3.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/tizuio/TizuMark/releases/download/v1.2.0/TizuMark_1.2.0_x64.exe#/TizuMark.exe",
-            "hash": "97c6613988da4a7422085d80e791b47cc3420dda837f815469c650f1ef22034a"
+            "url": "https://github.com/tizuio/TizuMark/releases/download/v1.1.0/TizuMark_1.1.0_x64.exe#/TizuMark.exe",
+            "hash": "3a6cb40a13f1e4d0f339f9aa48267570f0f6ab62146691773d4d3bc4dfda1f64"
         }
     },
     "bin": "TizuMark.exe",
@@ -85,7 +85,7 @@
         "New-Item -Path $registeredApplications -Force | Out-Null",
         "New-ItemProperty -Path $registeredApplications -Name 'TizuMark' -Value 'Software\\TizuMark\\Capabilities' -PropertyType String -Force | Out-Null"
     ],
-        "post_uninstall": [
+    "post_uninstall": [
         "$roamingSource = Join-Path $env:APPDATA 'com.tizu.markdown'",
         "$localSource = Join-Path $env:LOCALAPPDATA 'com.tizu.markdown'",
         "foreach ($source in @($roamingSource, $localSource)) {",
