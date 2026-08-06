@@ -6,7 +6,7 @@
     "architecture": {
         "64bit": {
             "url": "https://github.com/tizuio/TizuMark/releases/download/v1.2.0/TizuMark_1.2.0_x64.exe#/TizuMark.exe",
-            "hash": "f68828c042527a2e402a0c51b17754351d871989735f5de1fe3231bce412b803"
+            "hash": "97c6613988da4a7422085d80e791b47cc3420dda837f815469c650f1ef22034a"
         }
     },
     "bin": "TizuMark.exe",
@@ -85,7 +85,7 @@
         "New-Item -Path $registeredApplications -Force | Out-Null",
         "New-ItemProperty -Path $registeredApplications -Name 'TizuMark' -Value 'Software\\TizuMark\\Capabilities' -PropertyType String -Force | Out-Null"
     ],
-    "post_uninstall": [
+        "post_uninstall": [
         "$roamingSource = Join-Path $env:APPDATA 'com.tizu.markdown'",
         "$localSource = Join-Path $env:LOCALAPPDATA 'com.tizu.markdown'",
         "foreach ($source in @($roamingSource, $localSource)) {",
@@ -101,9 +101,9 @@
         "foreach ($extension in @('.md', '.markdown')) {",
         "    $extensionPath = Join-Path $classesRoot $extension",
         "    if (Test-Path -LiteralPath $extensionPath) {",
-        "        $extensionKey = Get-Item -LiteralPath $extensionPath",
-        "        if ($extensionKey.GetValue('') -eq $progId) {",
-        "            $extensionKey.DeleteValue('', $false)",
+        "        $currentDefault = (Get-ItemProperty -LiteralPath $extensionPath -ErrorAction SilentlyContinue).'(default)'",
+        "        if ($currentDefault -eq $progId) {",
+        "            Remove-ItemProperty -LiteralPath $extensionPath -Name '(default)' -ErrorAction SilentlyContinue",
         "        }",
         "        $openWithPath = Join-Path $extensionPath 'OpenWithProgids'",
         "        if (Test-Path -LiteralPath $openWithPath) {",
@@ -124,6 +124,10 @@
             "64bit": {
                 "url": "https://github.com/tizuio/TizuMark/releases/download/v$version/TizuMark_$version_x64.exe#/TizuMark.exe"
             }
+        },
+        "hash": {
+            "url": "https://github.com/tizuio/TizuMark/releases/tag/v$version",
+            "regex": "(?s)$basename.*?$sha256"
         }
     }
 }
