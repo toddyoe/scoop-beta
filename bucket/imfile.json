@@ -1,12 +1,12 @@
 {
-    "version": "2.3.2",
+    "version": "2.3.3",
     "description": "A full-featured download manager",
     "homepage": "https://github.com/imfile-io/imfile-desktop",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v2.3.2/imFile-2.3.2-x64.zip",
-            "hash": "e38388cfc25d8a78d09211720a56082cd0bfae99d0b124d4521eac4160a3e696"
+            "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v2.3.3/imFile-2.3.3-x64.zip",
+            "hash": "71f5074d5dbf298a62eef5d8cfa49339c877ef847ecdb35c8b3b42b4e5748867"
         }
     },
     "bin": "imFile.exe",
