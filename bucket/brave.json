@@ -1,6 +1,6 @@
 {
     "homepage": "https://brave.com",
-    "version": "1.94.110",
+    "version": "1.94.111",
     "description": "Secure, Fast & Private Web Browser with Adblocker (beta release)",
     "license": {
         "identifier": "Freeware,BSD-3-Clause,GPL-3.0-only,...",
@@ -8,8 +8,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/brave/brave-browser/releases/download/v1.94.110/brave-origin-v1.94.110-win32-x64.zip",
-            "hash": "c28ef603c79bef3545ecc4001a23e5ce7f39148d7298d1273dba547392604229"
+            "url": "https://github.com/brave/brave-browser/releases/download/v1.94.111/brave-origin-v1.94.111-win32-x64.zip",
+            "hash": "da747a2d0da3307ba574e61a64ceaa2953b12949a7821122b3252b8a539feacb"
         }
     },
     "bin": [
