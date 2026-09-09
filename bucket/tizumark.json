@@ -1,12 +1,12 @@
 {
-    "version": "1.2.2",
+    "version": "1.2.3",
     "description": "A lightweight, fast and open-source Markdown editor built with Tauri and Rust.",
     "homepage": "https://github.com/tizuio/TizuMark",
     "license": "GPL-3.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/tizuio/TizuMark/releases/download/v1.2.2/TizuMark_1.2.2_x64.exe#/TizuMark.exe",
-            "hash": "30ec0b575535bd44735dc899e804b7f38e7e0e9ee63f5ea1fad0135d68f92576"
+            "url": "https://github.com/tizuio/TizuMark/releases/download/v1.2.3/TizuMark_1.2.3_x64.exe#/TizuMark.exe",
+            "hash": "d7f2d35146aea1b88f8a3d4c9240f2bfece9a4c897c2320d7273ce69894b216c"
         }
     },
     "bin": "TizuMark.exe",
