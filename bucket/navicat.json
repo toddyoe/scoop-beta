@@ -8,7 +8,7 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://dn.navicat.com/download/navicat17_premium_cs_x64.exe",
+            "url": "https://dn.navicat.com/download/navicat18_premium_cs_x64.exe",
             "hash": "6f7155806d669fb21f1f98673dc6edfe39be062afcc71e2d8cd4a788eae64077"
         }
     },
@@ -16,12 +16,12 @@
     "shortcuts": [
         [
             "navicat.exe",
-            "Navicat Premium 17"
+            "Navicat Premium 18"
         ]
     ],
     "checkver": {
         "url": "https://www.navicat.com/en/products/navicat-premium-release-note",
-        "regex": "<b>Navicat Premium \\(Windows\\) version (17[\\d.]+)</b>"
+        "regex": "<b>Navicat Premium \\(Windows\\) version (18[\\d.]+)</b>"
     },
     "autoupdate": {
         "architecture": {
