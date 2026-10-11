@@ -1,10 +1,10 @@
 {
-    "version": "0.17.4.79",
+    "version": "0.17.4.82",
     "homepage": "https://rime.im/",
     "license": "GPL-3.0-or-later",
     "description": "Rime for Windows",
-    "url": "https://github.com/rime/weasel/releases/download/latest/weasel-0.17.4.79.6f9e012-installer.exe#/dl.7z",
-    "hash": "121123550b9872be6ebd86dc195b1b6508553e0c1ec839a7e745a1eb3bae920c",
+    "url": "https://github.com/rime/weasel/releases/download/latest/weasel-0.17.4.82.9e3047c-installer.exe#/dl.7z",
+    "hash": "1c2835049624bbacc88e5004052c7728c47e4ecca3f028f1843d3cf2a3d971e6",
     "pre_install": [
         "if(!(Test-Path \"$dir\\Rime\")) {New-Item \"$dir\\Rime\" -ItemType Directory | Out-Null} ",
         "& \"$dir\\WeaselSetup.exe\" /i",
